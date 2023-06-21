@@ -126,10 +126,9 @@ class HBNBCommand(cmd.Cmd):
         for a in args:
             if '=' not in a:
                 continue
-            kv = a.split('=')
-            # print(kv)
+            kv = a.partition('=')
             k = kv[0]
-            v = kv[1]
+            v = kv[2]
             if v.startswith('=') or v.endswith('='):
                 continue
             if v == '':
