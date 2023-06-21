@@ -124,14 +124,14 @@ class HBNBCommand(cmd.Cmd):
             return
         kws = dict()
         for a in args:
-            if v.startswith('=') or v.endswith('='):
-                continue
             if '=' not in a:
                 continue
             kv = a.split('=')
             # print(kv)
             k = kv[0]
             v = kv[1]
+            if v.startswith('=') or v.endswith('='):
+                continue
             if v == '':
                 continue
             if v.isnumeric():
