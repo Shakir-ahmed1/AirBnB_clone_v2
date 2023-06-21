@@ -131,8 +131,6 @@ class HBNBCommand(cmd.Cmd):
             v = kv[2]
             if v.startswith('=') or v.endswith('='):
                 continue
-            if v == '':
-                continue
             if v.isnumeric():
                 kws[k] = int(v)
             elif '.' in v and v.replace('.', '', 1).isnumeric():
