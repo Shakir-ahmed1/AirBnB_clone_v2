@@ -133,8 +133,11 @@ class HBNBCommand(cmd.Cmd):
                 continue
             if v.isnumeric():
                 kws[k] = int(v)
-            elif '.' in v and v.replace('.', '', 1).isnumeric():
-                kws[k] = float(v)
+            elif '.' in v and v.replace('.', '', 1).replace('-','',1).isnumeric():
+                try:
+                    kws[k] = float(v)
+                except ValueError:
+                    continue
             elif v.startswith('"') and v.endswith('"'):
                 kws[k] = v.replace('_',' ')[1:-1]
             else:
