@@ -39,7 +39,7 @@ class DBStorage:
         if cls is not None:
             tb = [cls]
         else:
-            tb = [State, City, User]
+            tb = [State, City, User, Place]
         
         for t in tb:
             # converts the tuple to dictionary
