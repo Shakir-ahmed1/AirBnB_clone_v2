@@ -39,12 +39,11 @@ class DBStorage:
         if cls is not None:
             tb = [cls]
         else:
-            tb = [State, City]
+            tb = [State, City, User]
         
         for t in tb:
             # converts the tuple to dictionary
             for v in self.__session.query(t).all():
-                print(type(v))
                 temp = {c.name: getattr(v, c.name) for c in v.__table__.columns}
                 result[t.__name__ + '.' + temp['id']] = v
 
