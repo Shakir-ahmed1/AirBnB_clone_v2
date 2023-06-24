@@ -14,7 +14,6 @@ class FileStorage:
             return FileStorage.__objects
         result = {}
         for k, v in FileStorage.__objects.items():
-            print(type(k))
             if k.startswith(f'{cls.__name__}'):
                 result[k] = v
         return result
