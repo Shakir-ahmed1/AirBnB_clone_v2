@@ -3,6 +3,7 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 from sqlalchemy.orm import relationship
+from os import getenv
 
 place_amenity = Table('place_amenity', Base.metadata,
                       Column('place_id',String(60), ForeignKey('places.id')),
@@ -24,3 +25,16 @@ class Place(BaseModel, Base):
     amenity_ids = []
     reviews = relationship('Review', backref='place', cascade='delete')
     amenities = relationship('Amenity', secondary=place_amenity, viewonly=False)
+    if getenv('HBNB_TYPE_STORAGE') != 'db':
+        @property
+        def reviews(self):
+            from models.engine.file_storage import FileStorage
+            storage = FileStorage()
+            storage.reload()
+            for k, v in storage.all().items():
+                result = []
+                if k.startswith(f'Review') and k.place_id == self.id:
+                    result.append(k)
+            return result
+
+
