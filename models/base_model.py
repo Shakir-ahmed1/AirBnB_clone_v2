@@ -12,6 +12,7 @@ class BaseModel:
     id = Column(String(60), primary_key=True)
     created_at = Column(DateTime, nullable=False, default=datetime.utcnow())
     updated_at = Column(DateTime, nullable=True, default=datetime.utcnow())
+
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
         if not kwargs:
@@ -20,11 +21,16 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
         else:
-            kwargs['id'] = kwargs['id'] if 'id' in kwargs else str(uuid.uuid4())
-            kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f') if 'updated_at' in kwargs else datetime.now()
-            kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f') if 'created_at' in kwargs else datetime.now()
+            kwargs['id'] = kwargs['id'] if 'id' in kwargs else str(
+                uuid.uuid4())
+            kwargs['updated_at'] = datetime.strptime(
+                kwargs['updated_at'],
+                '%Y-%m-%dT%H:%M:%S.%f'
+                ) if 'updated_at' in kwargs else datetime.now()
+            kwargs['created_at'] = datetime.strptime(
+                kwargs['created_at'],
+                '%Y-%m-%dT%H:%M:%S.%f'
+                ) if 'created_at' in kwargs else datetime.now()
             if '__class__' in kwargs:
                 del kwargs['__class__']
             self.__dict__.update(kwargs)
