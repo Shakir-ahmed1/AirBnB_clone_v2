@@ -20,6 +20,7 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
         else:
+            kwargs['id'] = kwargs['id'] if 'id' in kwargs else str(uuid.uuid4())
             kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
                                                      '%Y-%m-%dT%H:%M:%S.%f') if 'updated_at' in kwargs else datetime.now()
             kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
