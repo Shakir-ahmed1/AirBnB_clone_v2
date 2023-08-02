@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env bash
 # prepring webservers for deployment
 sudo apt-get update
 sudo apt-get install -y nginx
