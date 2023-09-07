@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 # Import Fabric's API module
 """ generates archive from web_static folder """
-from fabric.api import *
 from datetime import datetime
+
+from fabric.api import *
+
 archive_name = "web_static_{}.tgz".format(datetime.now().strftime("%Y%m%d%H%M%S"))
+
 
 def do_pack():
     """
