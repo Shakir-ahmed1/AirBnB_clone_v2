@@ -17,5 +17,3 @@ def do_pack():
                 tar.add(os.path.join(root, file), arcname=file)
             for dir in dirs:
                 tar.add(os.path.join(root, dir), arcname=dir)
-
-do_pack()
