@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# prepring webservers for deployment
+# prepring webservers for static deployment
 sudo apt-get update
 sudo apt-get install -y nginx
 
