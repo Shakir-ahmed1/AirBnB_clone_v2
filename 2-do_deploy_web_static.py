@@ -9,29 +9,29 @@ env.hosts = ['', '']
 def do_deploy(archive_path):
     if not exists(archive_path):
         return False
-    t1 = put(archive_path, "/tmp/")
+    t1 = put(archive_path, "/t{archive_path}mp/")
     if t1.failed:
         return False
     file_name = archive_path.split('/')[-1]
     folder_name = file_name.split('.')[-2]
-    t2 = run(f"tar -xzf /tmp/{file_name} -C /data/web_static/releases/{folder_name}/")
+    t2 = run("tar -xzf /tmp/{} -C /data/web_static/releases/{}".format(file_name, folder_name))
     if t2.failed:
         return False
-    t3 = run("rm /tmp/{file_name}")
+    t3 = run("rm /tmp/{}".format(file_name))
     if t3.failed:
         return False
     t4 = run(
-        "mv /data/web_static/releases/{folder_name}/web_static/* /data/web_static/releases/{folder_name}/")
+        "mv /data/web_static/releases/{}/web_static/* /data/web_static/releases/{}".format(folder_name, folder_name))
     if t4.failed:
         return False
-    t5 = run("rm -rf /data/web_static/releases/{folder_name}/web_static/")
+    t5 = run("rm -rf /data/web_static/releases/{}/web_static".format(folder_name))
     if t5.failed:
         return False
     t6 = run("rm -rf /data/web_static/current")
     if t6.failed:
         return False
     t7 = run(
-        "ln -s /data/web_static/releases/{folder_name} /data/web_static/current")
+        "ln -s /data/web_static/releases/{} /data/web_static/current".format(folder_name))
     if t7.failed:
         return False
     return True
