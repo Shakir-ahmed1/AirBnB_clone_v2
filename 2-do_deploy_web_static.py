@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ a fabric script that deploys the current version of web_static """
-from fabric.api import *
+from fabric.api import run, env, put
 from os.path import exists
 
 env.hosts = ['3.85.54.219', '3.85.136.250']
