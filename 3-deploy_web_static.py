@@ -2,7 +2,7 @@
 # Import Fabric's API module
 """ generates archive from web_static folder """
 from datetime import datetime
-from fabric.api import *
+from fabric.api import local, put, env, run
 from os.path import exists
 archive_name = "web_static_{}.tgz".format(
     datetime.now().strftime("%Y%m%d%H%M%S"))
