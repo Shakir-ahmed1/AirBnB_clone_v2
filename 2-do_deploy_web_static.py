@@ -32,4 +32,5 @@ def do_deploy(archive_path):
         "ln -sf /data/web_static/releases/{} /data/web_static/current".format(folder_name))
     if t7.failed:
         return False
+    t8 = run("service nginx restart")
     return True
