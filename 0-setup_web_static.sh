@@ -31,5 +31,5 @@ sudo chown -hR ubuntu:ubuntu /data
 # Use alias inside your Nginx configuration
 hbnbstatic="server_name _;\n\tlocation /hbnb_static{\n\t\talias \/data\/web_static\/current\n}"
 # nginx conf: serving shakir.tech/hbnb_static from /data/web_static/current
-sudo sed -i "s|server_name _;|$hbnbstatic|" /etc/nginx/sites-enabled/default
+sudo sed -i "s/server_name _;/$hbnbstatic/" /etc/nginx/sites-enabled/default
 sudo service nginx restart
