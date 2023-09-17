@@ -20,7 +20,12 @@ echo -e "<html>
   </body>
 </html>" > /data/web_static/releases/test/index.html
 #create symbolic link. if exists recreate it
-sudo unlink /data/web_static/current || true && sudo ln -s /data/web_static/releases/test/ /data/web_static/current
+#sudo unlink /data/web_static/current || true && sudo ln -s /data/web_static/releases/test/ /data/web_static/current
+if [ -e /data/web_static/current ]; then
+         rm /data/web_static/current;
+fi
+ln -sf /data/web_static/releases/test/ /data/web_static/current;
+
 #give ownership
 sudo chown -hR ubuntu:ubuntu /data
 hbnbstatic="server_name _;\n\tlocation /hbnb_static{\n\talias \/data\/web_static\/current\n}"
