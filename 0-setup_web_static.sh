@@ -1,34 +1,40 @@
 #!/usr/bin/env bash
-# prepring webservers for static deployment
+# Sets up web servers for the deployment of web_static
+
+# Install Nginx if it not already installed
 sudo apt-get update
-sudo apt-get install -y nginx
+sudo apt-get -y install nginx
 
-# start nginx server
-sudo service nginx start
+# Create the folder /data/ if it doesn’t already exist
+sudo mkdir -p /data/
 
-# creating directories
-mkdir /data
-mkdir /data/web_static
-mkdir /data/web_static/releases
-mkdir /data/web_static/shared
-mkdir /data/web_static/releases/test
-echo -e "<html>
+# Create the folder /data/web_static/ if it doesn’t already exist
+sudo mkdir -p /data/web_static/
+
+# Create the folder /data/web_static/releases/ if it doesn’t already exist
+sudo mkdir -p /data/web_static/releases/
+
+# Create the folder /data/web_static/shared/ if it doesn’t already exist
+sudo mkdir -p /data/web_static/shared/
+
+# Create the folder /data/web_static/releases/test/ if it doesn’t already exist
+sudo mkdir -p /data/web_static/releases/test/
+
+# Create a fake HTML file /data/web_static/releases/test/index.html (with simple content, to test your Nginx configuration)
+echo "<html>
   <head>
   </head>
   <body>
     Holberton School
   </body>
-</html>" > /data/web_static/releases/test/index.html
-#create symbolic link. if exists recreate it
-#sudo unlink /data/web_static/current || true && sudo ln -s /data/web_static/releases/test/ /data/web_static/current
-if [ -e /data/web_static/current ]; then
-         rm /data/web_static/current;
-fi
-ln -sf /data/web_static/releases/test/ /data/web_static/current;
+</html>" | sudo tee /data/web_static/releases/test/index.html
 
-#give ownership
-sudo chown -hR ubuntu:ubuntu /data
-hbnbstatic="server_name _;\n\tlocation /hbnb_static{\n\talias \/data\/web_static\/current\n}"
-# nginx conf: serving shakir.tech/hbnb_static from /data/web_static/current
-sudo sed -i "s/server_name _;/$hbnbstatic/" /etc/nginx/sites-enabled/default
-sudo service nginx reload
+# Create a symbolic link /data/web_static/current linked to the /data/web_static/releases/test/ folder. If the symbolic link already exists, it should be deleted and recreated every time the script is ran.
+sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
+
+# Give ownership of the /data/ folder to the ubuntu user AND group (you can assume this user and group exist). This should be recursive; everything inside should be created/owned by this user/group.
+sudo chown -R ubuntu:ubuntu /data/
+
+# Use alias inside your Nginx configuration
+sudo sed -i "38i \\\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}\n" /etc/nginx/sites-available/default
+sudo service nginx restart
