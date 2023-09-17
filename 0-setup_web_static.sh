@@ -19,11 +19,14 @@ echo -e "<html>
   </body>
 </html>" > /data/web_static/releases/test/index.html
 
-# Create a symbolic link /data/web_static/current linked to the /data/web_static/releases/test/ folder. If the symbolic link already exists, it should be deleted and recreated every time the script is ran.
-sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
+#create symbolic link. if exists recreate it
+if [ -e /data/web_static/current ]; then
+         rm /data/web_static/current;
+fi
+ln -sf /data/web_static/releases/test/ /data/web_static/current;
 
-# Give ownership of the /data/ folder to the ubuntu user AND group (you can assume this user and group exist). This should be recursive; everything inside should be created/owned by this user/group.
-sudo chown -R ubuntu:ubuntu /data/
+#give ownership
+sudo chown -hR ubuntu:ubuntu /data
 
 # Use alias inside your Nginx configuration
 sudo sed -i "38i \\\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t}\n" /etc/nginx/sites-available/default
