@@ -23,6 +23,8 @@ def do_deploy(archive_path):
     t3 = run("rm /tmp/{}".format(file_name))
     if t3.failed:
         return False
+    t4 = run("mv /data/web_static/releases/{}/web_static/*  /data/web_static/releases/{}".format(folder_name, folder_name))
+    t5 = run("rm -r  /data/web_static/releases/{}/web_static".format(folder_name))
     t6 = run("rm -rf /data/web_static/current")
     if t6.failed:
         return False
