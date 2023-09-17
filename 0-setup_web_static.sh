@@ -4,30 +4,20 @@
 # Install Nginx if it not already installed
 sudo apt-get update
 sudo apt-get -y install nginx
-
-# Create the folder /data/ if it doesn’t already exist
-sudo mkdir -p /data/
-
-# Create the folder /data/web_static/ if it doesn’t already exist
-sudo mkdir -p /data/web_static/
-
-# Create the folder /data/web_static/releases/ if it doesn’t already exist
-sudo mkdir -p /data/web_static/releases/
-
-# Create the folder /data/web_static/shared/ if it doesn’t already exist
-sudo mkdir -p /data/web_static/shared/
-
-# Create the folder /data/web_static/releases/test/ if it doesn’t already exist
-sudo mkdir -p /data/web_static/releases/test/
+mkdir /data
+mkdir /data/web_static
+mkdir /data/web_static/releases
+mkdir /data/web_static/shared
+mkdir /data/web_static/releases/test
 
 # Create a fake HTML file /data/web_static/releases/test/index.html (with simple content, to test your Nginx configuration)
-echo "<html>
+echo -e "<html>
   <head>
   </head>
   <body>
     Holberton School
   </body>
-</html>" | sudo tee /data/web_static/releases/test/index.html
+</html>" > /data/web_static/releases/test/index.html
 
 # Create a symbolic link /data/web_static/current linked to the /data/web_static/releases/test/ folder. If the symbolic link already exists, it should be deleted and recreated every time the script is ran.
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
