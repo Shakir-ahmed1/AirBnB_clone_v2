@@ -10,4 +10,5 @@ def hello_hbnb():
     return "Hello HBNB!"
 
 
-app.run()
+if __name__ == '__main__':
+    app.run()
