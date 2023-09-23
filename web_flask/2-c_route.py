@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ hello HBNB """
 from flask import Flask
+
+
 app = Flask(__name__)
 
 
@@ -14,6 +16,12 @@ def hello_hbnb():
 def hbnb():
     """ displays HBNB page """
     return "HBNB"
+
+
+@app.route('/c/<text>')
+def c_text(text):
+    """ displays the uri passed to the text argument """
+    return f"C {text.replace('_', ' ')}"
 
 
 if __name__ == '__main__':
