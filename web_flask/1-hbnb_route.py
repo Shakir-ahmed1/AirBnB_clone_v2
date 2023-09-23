@@ -10,4 +10,10 @@ def hello_hbnb():
     return "Hello HBNB!"
 
 
-app.run(host='0.0.0.0')
+@app.route('/hbnb', strict_slashes=False)
+def hbnb():
+    """ displays HBNB page """
+    return "HBNB"
+
+
+app.run(host='0.0.0.0', port=5000)
