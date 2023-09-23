@@ -10,4 +10,4 @@ def hello_hbnb():
     return "Hello HBNB!"
 
 
-app.run(host='0.0.0.0')
+app.run()
