@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """This module instantiates an object of class FileStorage"""
 from os import getenv
-from .state import State
-from .city import City
-from .user import User
-from .place import Place
-from .amenity import Amenity
+# from .state import State
+# from .city import City
+# from .user import User
+# from .place import Place
+# from .amenity import Amenity
 
 
 if getenv('HBNB_TYPE_STORAGE') == 'db':
