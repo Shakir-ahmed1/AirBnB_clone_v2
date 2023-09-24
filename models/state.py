@@ -21,4 +21,3 @@ class State(BaseModel, Base):
                 if value.state_id == self.id:
                     filtered.append(value)
             return filtered
-
