@@ -1,6 +1,6 @@
 #!/user/bin/python3
 """ hello HBNB """
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 
 
@@ -29,5 +29,16 @@ def python_text(text):
     return f"Python {text.replace('_', ' ')}"
 
 
-if __name__ == '__main__':
-    app.run()
+@app.route('/number/<int:n>', strict_slashes=False)
+def number_only(n):
+    """ displays the given text in the number path if it is integer """
+    return f"{n}"
+
+
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def number_template(n):
+    """ prints the given integer and displays it inside a template"""
+    return render_template('5-number.html', n=n)
+
+
+app.run(host='0.0.0.0', port=5000)

@@ -29,5 +29,9 @@ def python_text(text):
     return f"Python {text.replace('_', ' ')}"
 
 
-if __name__ == '__main__':
-    app.run()
+@app.route('/number/<int:n>', strict_slashes=False)
+def number_only(n):
+    return f"{n}"
+
+
+app.run(host='0.0.0.0', port=5000)
