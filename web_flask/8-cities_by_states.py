@@ -17,12 +17,6 @@ def remove_session(exception):
 def cities_by_states():
     """ lists all states in the storage """
     states = storage.all(State)
-    for st in states:
-        print(f'{states[st].id}: <B>{states[st].name}')
-        for ct in states[st].cities:
-            print(f"    {ct.name}")
-        #    print(f'{st.cities[ct].id} <B>{{st.cities[ct].name}}')
-
     return render_template('8-cities_by_states.html', states=states)
 
 

@@ -6,16 +6,15 @@
     <BODY>
         <H1>States</H1>
         <UL>
-	    {% for st in states %}
-	    <LI>{{states[st].id}}: <B>{{states[st].name|dictsort}}</B>
+	    {% for st in states|dictsort %}
+	    <LI>{{st[1].id}}: <B>{{st[1].name}}</B>
                 <UL>
-			{% for ct in states[st].cities|dictsort %}
+			{% for ct in st[1].cities|sort(attribute='name') %}
 			<LI>{{ct.id}}: <B>{{ct.name}}</B></LI>
 			{% endfor %}
                 </UL>
             </LI>
 	    {% endfor %}
-
         </UL>
     </BODY>
 </HTML>
