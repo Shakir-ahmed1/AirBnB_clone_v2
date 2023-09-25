@@ -7,9 +7,9 @@
         <H1>States</H1>
         <UL>
 	    {% for st in states %}
-	    <LI>{{states[st].id}}: <B>{{states[st].name}}</B>
+	    <LI>{{states[st].id}}: <B>{{states[st].name|dictsort}}</B>
                 <UL>
-			{% for ct in states[st].cities %}
+			{% for ct in states[st].cities|dictsort %}
 			<LI>{{ct.id}}: <B>{{ct.name}}</B></LI>
 			{% endfor %}
                 </UL>
