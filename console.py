@@ -10,8 +10,11 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+from models.base_model import Base
+from os import getenv
 
-
+if getenv('HBNB_TYPE_STORAGE') == 'db':
+    from models import storage
 class HBNBCommand(cmd.Cmd):
     """ Contains the functionality for the HBNB console"""
 
@@ -146,9 +149,9 @@ class HBNBCommand(cmd.Cmd):
 
         new_instance = HBNBCommand.classes[args[0]]()
         new_instance.__dict__.update(kws)
-        print(new_instance.id)
         new_instance.save()
         storage.save()
+        print(new_instance.id)
 
     def help_create(self):
         """ Help information for the create method """
