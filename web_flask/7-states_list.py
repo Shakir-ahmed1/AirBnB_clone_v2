@@ -15,8 +15,11 @@ def remove_session(exception):
 @app.route('/states_list', strict_slashes=False)
 def states_list():
     """ lists all states in the storage """
+    new = []
     states = storage.all(State)
-    return render_template('7-states_list.html', states=states)
+    for st in states:
+        new.append(states[st])
+    return render_template('7-states_list.html', states=new)
 
 
 if __name__ == '__main__':
