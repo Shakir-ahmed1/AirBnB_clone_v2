@@ -19,7 +19,10 @@ def states(id):
     """ lists all states in the storage """
     states = storage.all(State)
     if id == '-1':
-        return render_template('9-states.html', states=states, id='-1')
+        new = []
+        for st in states:
+            new.append(states[st])
+        return render_template('9-states.html', states=new, id='-1')
     for st in states:
         if states[st].id == id:
             return render_template('9-states.html', states=states[st])
