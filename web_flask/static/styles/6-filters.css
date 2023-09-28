@@ -1,6 +1,7 @@
 .filters {
 	display: block;
 	background-color: white;
+	color: black;
 	height: 70px;
 	width: 100%;
 	border: 1px solid #DDDDDD;
@@ -9,6 +10,7 @@
 
 .locations {
 	display: inline;
+	color: black;
 	vertical-align: middle;
 	float: left;
 	height: 100%;
@@ -20,10 +22,11 @@
 
 .amenities {
 	display: inline;
+	color: black;
 	vertical-align: middle;
 	height: 100%;
 	float: left;
-    width: 25%;
+        width: 25%;
 
 	line-height: 20px;
 }
@@ -31,13 +34,14 @@
 .popover {
 	list-style-type: none;
 	display: none;
-	background-color: #FAFAFA;
 	width: 100%;
+	position: relative;
 
 	margin-left: -1px;
 	margin-top: 8px;
 	padding: 25px 0px;
 
+	background-color: #FAFAFA;
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
 
@@ -58,9 +62,6 @@ ul {
 	padding: 0px;
 	padding-bottom: 20px;
 }
-
-li {
-}	
 
 h2 {
 	font-size: 16px;
@@ -84,8 +85,8 @@ h4 {
 }
 
 button {
-	color: #FFFFFF;
 	font-size: 18px;
+	color: #FFFFFF;
 	
 	height: 48px;
 	width: 20%;
